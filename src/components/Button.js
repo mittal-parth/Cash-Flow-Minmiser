@@ -1,11 +1,11 @@
 import { Button as MuiButton } from "@material-ui/core";
 
-const Button = ({ color, text, onClick }) => {
+const Button = ({ color, text, variant, onClick }) => {
   return (
     <MuiButton
       onClick={onClick}
-      style={{ backgroundColor: color }}
-      variant="contained"
+      color = {color}
+      variant={variant || "contained"}
     >
       {text}
     </MuiButton>

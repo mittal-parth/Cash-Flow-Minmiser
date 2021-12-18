@@ -3,42 +3,43 @@ import NameList from "./NameList";
 import NameInput from "./NameInput";
 import Button from "./Button";
 
-const Names = ({ flag }) => {
+const Names = (props) => {
   const [name, setName] = useState("");
-  const [allNames, setAllNames] = useState([]);
 
   const addParticipant = (event) => {
     event.preventDefault();
-    console.log("Button clicked!");
-    setAllNames((previous) => [{ name }, ...previous]);
-    setName("");
-
-    console.log("Log");
+    if (name !== "") {
+      props.setAllNames((previous) => [{ name }, ...previous]);
+      setName("");
+    } else {
+      alert("Name cant be empty");
+    }
+    // setAllNames((previous) => [{ name }, ...previous]);
+    // setName("");
   };
 
   const handleChange = (event) => {
     setName(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
     <>
       <NameInput
-        flag={flag}
+        flag={props.flag}
         addParticipant={addParticipant}
         name={name}
         handleChange={handleChange}
       />
 
-      {allNames && allNames.length ? (
+      {props.allNames && props.allNames.length ? (
         <>
-          <NameList allNames={allNames} />
+          <NameList allNames={props.allNames} />
 
           <Button
             variant="contained"
             color="secondary"
             text="Submit"
-            // onClick={handleOpenForm}
+            onClick={props.handleOpenForm}
           />
         </>
       ) : null}
