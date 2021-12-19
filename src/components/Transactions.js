@@ -2,14 +2,10 @@ import { useState } from "react";
 import { Grid } from "@material-ui/core";
 import TransactionTable from "./TransactionTable";
 import Button from "./Button";
+import { generateNodes, generateLinks, config } from "../utils/GraphConfig";
 
-const Transactions = ({
-  flag,
-  handleTransactionDataSubmit,
-  splitwiseTransactions,
-  allNames,
-}) => {
-  const [items, setItems] = useState([]);
+const Transactions = (props) => {
+  // const [items, setItems] = useState([]);
 
   const [finalValues, setFinalValues] = useState({
     person1: "",
@@ -26,7 +22,7 @@ const Transactions = ({
       finalValues["person2"] !== "" &&
       finalValues["amount"] !== ""
     ) {
-      setItems([...items, finalValues]);
+      props.setItems([...props.items, finalValues]);
     } else {
       alert("Enter all Fields");
     }
@@ -37,42 +33,50 @@ const Transactions = ({
       amount: "",
     });
   }
+
+  function handleTransactionDataSubmit() {
+    const data = {
+      nodes: generateNodes(props.allNames),
+      links: generateLinks(props.items),
+    };
+
+    props.setInputGraphData(data);
+    props.setInputGraphConfig(config);
+  }
   return (
-    <Grid container>
-      <Grid item xs={12} md={6}>
-        <div>
-          <h4>Transactions</h4>
-        </div>
-        <div className="form">
-          {flag && (
-            <TransactionTable
-              items={items}
-              allNames={allNames}
-              addValues={addValues}
-              finalValues={finalValues}
-              handleFinalChange={handleFinalChange}
-            />
-          )}
-        </div>
+    <Grid item xs={12} md={6}>
+      <div>
+        <h4>Transactions</h4>
+      </div>
+      <div className="form">
+        {props.flag && (
+          <TransactionTable
+            items={props.items}
+            allNames={props.allNames}
+            addValues={addValues}
+            finalValues={finalValues}
+            handleFinalChange={handleFinalChange}
+          />
+        )}
+      </div>
 
-        {items && items.length ? (
-          <div className="form-names">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleTransactionDataSubmit}
-              text="Build Graph"
-            />
+      {props.items && props.items.length ? (
+        <div className="form-names">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleTransactionDataSubmit}
+            text="Build Graph"
+          />
 
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={splitwiseTransactions}
-              text="Simplify Settlements"
-            />
-          </div>
-        ) : null}
-      </Grid>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={props.splitwiseTransactions}
+            text="Simplify Settlements"
+          />
+        </div>
+      ) : null}
     </Grid>
   );
 };
