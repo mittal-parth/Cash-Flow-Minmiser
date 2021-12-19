@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Grid } from "@material-ui/core";
 import TransactionTable from "./TransactionTable";
 import Button from "./Button";
-import { generateNodes, generateLinks, config } from "../utils/GraphConfig";
+import Expense from "../classes/expense";
+import { generateNodes, generateLinks } from "../utils/graphConfig";
+import { minimiseCashFlow } from "../utils/minimiseCashFlow";
 
 const Transactions = (props) => {
-  // const [items, setItems] = useState([]);
 
   const [finalValues, setFinalValues] = useState({
     person1: "",
@@ -16,6 +17,7 @@ const Transactions = (props) => {
   const handleFinalChange = (name) => (event) => {
     setFinalValues({ ...finalValues, [name]: event.target.value });
   };
+
   function addValues() {
     if (
       finalValues["person1"] !== "" &&
@@ -41,8 +43,24 @@ const Transactions = (props) => {
     };
 
     props.setInputGraphData(data);
-    props.setInputGraphConfig(config);
   }
+
+  function minimiseCash() {
+    const input = [];
+    for (let item of props.items) {
+      input.push(
+        new Expense(item.person1, item.person2, parseInt(item.amount))
+      );
+    }
+    const output = minimiseCashFlow(input);
+
+    props.setOutputList(output);
+    props.setOutputGraphData({
+      nodes: generateNodes(props.allNames),
+      links: generateLinks(output),
+    });
+  };
+
   return (
     <Grid item xs={12} md={6}>
       <div>
@@ -51,6 +69,7 @@ const Transactions = (props) => {
       <div className="form">
         {props.flag && (
           <TransactionTable
+            isInput = {true}
             items={props.items}
             allNames={props.allNames}
             addValues={addValues}
@@ -72,7 +91,7 @@ const Transactions = (props) => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={props.splitwiseTransactions}
+            onClick={minimiseCash}
             text="Simplify Settlements"
           />
         </div>
