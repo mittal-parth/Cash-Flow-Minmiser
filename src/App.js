@@ -6,6 +6,7 @@ import Graph from "./components/Graph";
 import Names from "./components/Names";
 import Transactions from "./components/Transactions";
 import TransactionTable from "./components/TransactionTable";
+import OutputGraph from "./components/OutputGraph";
 
 function App() {
   const [flag, setFlag] = useState(false);
@@ -13,6 +14,7 @@ function App() {
   const [inputGraphData, setInputGraphData] = useState({});
   const [outputList, setOutputList] = useState([]);
   const [outputGraphData, setOutputGraphData] = useState({});
+  const [graphConfig, setGraphConfig] = useState({});
 
   const [items, setItems] = useState([]);
 
@@ -45,10 +47,12 @@ function App() {
               setInputGraphData={setInputGraphData}
               setOutputList={setOutputList}
               setOutputGraphData={setOutputGraphData}
+              setGraphConfig={setGraphConfig}
             />
             <Graph
               graphData={inputGraphData}
               graphHeader="Transactions Graph"
+              graphConfig={graphConfig}
             />
           </Grid>
           {outputList && outputList.length ? (
@@ -58,9 +62,10 @@ function App() {
                   <TransactionTable isInput={false} items={outputList} tableHeader="Simplified Transactions"/>
                 </div>
               </Grid>
-              <Graph
+              <OutputGraph
                 graphData={outputGraphData}
                 graphHeader={"Simplified Graph"}
+                graphConfig={graphConfig}
               />
             </Grid>
           ) : null}

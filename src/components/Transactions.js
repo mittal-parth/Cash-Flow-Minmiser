@@ -5,6 +5,7 @@ import Button from "./Button";
 import Expense from "../classes/expense";
 import { generateNodes, generateLinks } from "../utils/graphConfig";
 import { minimiseCashFlow } from "../utils/minimiseCashFlow";
+import {config} from "../utils/graphConfig"
 
 const Transactions = (props) => {
 
@@ -43,6 +44,7 @@ const Transactions = (props) => {
     };
 
     props.setInputGraphData(data);
+    props.setGraphConfig(config);
   }
 
   function minimiseCash() {

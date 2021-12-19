@@ -11,7 +11,7 @@ export function generateLinks(items) {
 }
 
 export const config = {
-    freezeAllDragEvents: false,
+    freezeAllDragEvents: true,
     nodeHighlightBehavior: true,
     node: {
       color: "blue",

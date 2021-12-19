@@ -1,17 +1,17 @@
 import { Grid } from "@material-ui/core";
 import { Graph as ReactGraph} from "react-d3-graph";
-// import {config} from "../utils/graphConfig"
-const Graph = ({ graphData, graphHeader, graphConfig }) => {
+import {config} from "../utils/graphConfig"
+const OutputGraph = ({ graphData, graphHeader }) => {
 
   return (
     <Grid item xs={12} md={6}>
-      {Object.keys(graphData).length && Object.keys(graphConfig).length ? (
+      {Object.keys(graphData).length && Object.keys(config).length ? (
         <>
           <h4>{graphHeader}</h4>
           <ReactGraph
             id="graph-id-output" // id is mandatory
             data={graphData}
-            config={graphConfig}
+            config={config}
           />
         </>
       ) : null}
@@ -19,4 +19,4 @@ const Graph = ({ graphData, graphHeader, graphConfig }) => {
   );
 };
 
-export default Graph;
+export default OutputGraph;
