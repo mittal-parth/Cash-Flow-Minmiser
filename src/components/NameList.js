@@ -5,6 +5,7 @@ import {
   TableContainer,
   TableRow,
   TableHead,
+  TableBody,
 } from "@material-ui/core";
 
 const NameList = ({ allNames }) => {
@@ -13,15 +14,17 @@ const NameList = ({ allNames }) => {
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
-            <TableRow>
+            <TableRow key="names">
               <TableCell align="center">Names</TableCell>
             </TableRow>
           </TableHead>
-          {allNames.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell align="center"> {item.name}</TableCell>
-            </TableRow>
-          ))}
+          <TableBody>
+            {allNames.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell align="center"> {item.name}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </div>
