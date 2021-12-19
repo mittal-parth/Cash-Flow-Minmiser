@@ -16,7 +16,7 @@ const NameInput = ({ flag, addParticipant, name, handleChange }) => {
             onChange={handleChange}
           />
         </div>
-        <Button color="primary" onClick={addParticipant} text="Add" />
+        <Button color="primary" onClick={addParticipant} text="Add" isDisabled={flag? true:false} />
       </div>
     </div>
   );

@@ -40,6 +40,7 @@ const Names = (props) => {
             color="secondary"
             text="Submit"
             onClick={props.handleOpenForm}
+            isDisabled={props.flag ? true:false}
           />
         </>
       ) : null}
