@@ -7,7 +7,7 @@ const Graph = ({ graphData, graphHeader }) => {
     <Grid item xs={12} md={6}>
       {Object.keys(graphData).length && Object.keys(config).length ? (
         <>
-          <h5>{graphHeader}</h5>
+          <h4>{graphHeader}</h4>
           <ReactGraph
             id="graph-id-output" // id is mandatory
             data={graphData}

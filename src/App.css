@@ -3,8 +3,53 @@
 }
 
 .p-name-field {
-  margin: 1.2rem;
+  margin: 20px;
 }
 
+h3 {
+  text-align: center;
+}
+.list-div {
+  padding: 0.8rem;
+}
 
+.list-all-names {
+  margin: 0 auto;
+  width: 50%;
+  height: auto;
+  overflow: scroll;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+}
 
+.form-names {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  margin: 0 auto;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.MuiSelect-select.MuiSelect-select {
+  padding-right: 24px;
+  width: 100px;
+}
+
+.form {
+  width: 90%;
+  margin: 0 auto;
+  object-fit: contain;
+  padding: 20px;
+}
+
+.name-list {
+  margin: 0 auto;
+  object-fit: contain;
+  padding: 20px;
+  width: 30%;
+}
+
+.table {
+  padding: 10px;
+}

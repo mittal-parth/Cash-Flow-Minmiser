@@ -1,13 +1,29 @@
+import {
+  Paper,
+  Table,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableHead,
+} from "@material-ui/core";
+
 const NameList = ({ allNames }) => {
   return (
-    <div className="allnames">
-      <h3>Names</h3>
-      {allNames.map((item, index) => (
-        <h4 style={{ color: "#3f3f3f" }} key={index}>
-          {" "}
-          {item.name}
-        </h4>
-      ))}
+    <div className="name-list">
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Names</TableCell>
+            </TableRow>
+          </TableHead>
+          {allNames.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell align="center"> {item.name}</TableCell>
+            </TableRow>
+          ))}
+        </Table>
+      </TableContainer>
     </div>
   );
 };

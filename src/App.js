@@ -17,12 +17,16 @@ function App() {
   const [items, setItems] = useState([]);
 
   const handleOpenForm = () => {
-    console.log("Form opened");
-    setFlag(!false);
+    if (allNames.length > 1) {
+      setFlag(!false);
+    }
+    else {
+      alert("Atleast two people must be entered.")
+    }
   };
 
   return (
-    <div style={{ margin: "0 auto" }}>
+    <div className="App">
       <Names
         flag={flag}
         handleOpenForm={handleOpenForm}
@@ -50,7 +54,9 @@ function App() {
           {outputList && outputList.length ? (
             <Grid container>
               <Grid item xs={12} md={6}>
-                <TransactionTable isInput={false} items={outputList} />
+                <div className="form">
+                  <TransactionTable isInput={false} items={outputList} tableHeader="Simplified Transactions"/>
+                </div>
               </Grid>
               <Graph
                 graphData={outputGraphData}

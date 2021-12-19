@@ -5,7 +5,7 @@ const NameInput = ({ flag, addParticipant, name, handleChange }) => {
   return (
     <div className="name-component">
       <div className="p-name">
-        <h2>Enter names of People in the group</h2>
+        <h3>People</h3>
         <div className="p-name-field">
           <TextField
             id="outlined-basic"

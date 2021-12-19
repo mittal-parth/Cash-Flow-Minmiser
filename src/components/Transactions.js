@@ -63,9 +63,7 @@ const Transactions = (props) => {
 
   return (
     <Grid item xs={12} md={6}>
-      <div>
-        <h4>Transactions</h4>
-      </div>
+      
       <div className="form">
         {props.flag && (
           <TransactionTable
@@ -75,6 +73,7 @@ const Transactions = (props) => {
             addValues={addValues}
             finalValues={finalValues}
             handleFinalChange={handleFinalChange}
+            tableHeader = "Input Transactions"
           />
         )}
       </div>
