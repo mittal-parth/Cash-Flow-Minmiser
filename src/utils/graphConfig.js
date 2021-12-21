@@ -14,12 +14,12 @@ export const config = {
     freezeAllDragEvents: true,
     nodeHighlightBehavior: true,
     node: {
-      color: "blue",
-      highlightStrokeColor: "lightgreen",
+      color: "red",
+      highlightStrokeColor: "blue",
       fontSize: 12,
     },
     link: {
-      highlightColor: "lightgreen",
+      highlightColor: "blue",
       renderLabel: true,
       labelProperty: "amount",
       fontSize: 12,
