@@ -91,6 +91,7 @@ function heap_top(heap) {
 // function to minimise cash flow
 // transactions is an array of expense class objects
 export function minimiseCashFlow(transactions) {
+	// {"name" : amt}
   var net_balance = {};
   for (var i = 0; i < transactions.length; i++) {
     var e = transactions[i]; // e is an object of expense class
@@ -114,6 +115,13 @@ export function minimiseCashFlow(transactions) {
   }
 
   var positive = []; // heap of credit holders
+	
+	/* positive = [
+		{100:"parth"}, 
+		{200: "abhinav"},
+		{300: "xyz"}
+	] */
+	
   var negative = []; // heap of debit holders
 
   for (const person in net_balance) {
