@@ -1,6 +1,6 @@
 import Expense from "../classes/expense";
 
-
+// function to maintain heap property while inserting an element
 function upheapify(heap, idx) {
   // heap = [{first: net_value, second: person}]
 
@@ -22,6 +22,7 @@ function upheapify(heap, idx) {
   }
 }
 
+// function to maintain heap property while deleting an element
 function downheapify(heap, idx) {
   var left_child_idx = 2 * idx + 1;
   var right_child_idx = 2 * idx + 2;
@@ -81,6 +82,7 @@ function pop_heap(heap) {
   downheapify(heap, 0);
 }
 
+// obtain the top most element of the heap
 function heap_top(heap) {
   if (heap.length === 0) {
     return;
