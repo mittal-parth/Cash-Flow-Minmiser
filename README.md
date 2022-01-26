@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Cash Flow Minimiser
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a program that allows users to split expenses with friends or colleagues. If a group needs to share the cost of a particular bill, the Cash Flow Minimiser will make sure that each person who paid money, gets reimbursed with the correct amount. This is also done using the minimum number of transactions. 
 
-## Available Scripts
+## Demo
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Clone the repository <br/>
+`git clone https://github.com/mittal-parth/Cash-Flow-Minmiser` <br/>
+`cd Cash-Flow-Minmiser`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Check package.json file and ensure scripts are notated as below:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Delete the node_modules folder and any 'lock' files such as 
+yarn.lock or package-lock.json if present.
 
-### `npm run build`
+Install required packages<br/>
+`npm install`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run the server<br/>
+`npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How does it work?
+Approach to solving this problem:
+First, we take in all the transactions and exchanges that have happened among the group of people. We use a function which is used to calculate every individual's net balance. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Based on their net balances, we can segregate the people into 2 categories - 
+<ul>
+<li>those under credit </li>
+<li>those under debit</li>
+</ul>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+A person is said to come under <i>credit</i> if his/ her net balance is <i>greater than</i> 0. This means that this person has to get his money back. 
+Likewise, a person is said to come under <i>debit</i> if his/ her balance is <i>lesser than</i> 0. This means this person owes money to someone else. 
+(If the net balance of an individual is 0, that means that he/ she need not give nor receive any money and they have been <i>settled</i>. 
+Such people will no longer be taken into consideration for further transaction settlements). 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<i>Eg: If Tarun pays ₹100 to Yash, then we can say that Tarun has to be reimbursed ₹100 which means his net balance is 100 and he is under credit. 
+Likewise, Yash who borrowed money has to pay Tarun back ₹100 as he is in debt. So, Yash has a net balance of -100. Once this has been settled, both their balances become 0. </i>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Next, from among the people who are in debit, we pick the person with the <b>largest debit.</b> 
+Then, among the people who are under credit, pick the person with the <b>largest credit. </b>
+We start off by settling these 2 values. Once they have been settled, we take the person with the next largest credit and the next largest debit and settle these 2. 
+This process continues until every person has been settled.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This can be achieved using a <b>Max Heap.</b>  
+This is the solution we follow to implement our Cash Flow Minimiser.
