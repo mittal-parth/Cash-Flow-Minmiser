@@ -4,6 +4,9 @@ This is a program that allows users to split expenses with friends or colleagues
 
 ## Demo
 
+https://minimise-cash-flow.netlify.app/
+
+## Video
 
 https://user-images.githubusercontent.com/76661350/151113470-62df1428-0c25-4019-a5ee-25353530752c.mp4
 
